@@ -1,5 +1,5 @@
 "use client";
-import  React, { useState } from "react";
+import  React, { useEffect, useState } from "react";
 import { MdNavigateNext } from "react-icons/md";
 import { IoIosArrowBack } from "react-icons/io";
 export function CarouselDemo() {
@@ -10,7 +10,7 @@ export function CarouselDemo() {
   ]);
   const [current, setCurrent] = useState(0);
   let previousSlide = () => {
-    if (current == 0) setCurrent(images.length - 1);
+    if (current == 0) setCurrent(images.length - 1);  
     else setCurrent(current - 1);
   };
 
@@ -19,11 +19,16 @@ export function CarouselDemo() {
     else setCurrent(current + 1);
   };
 
+    // setInterval(()=>{
+    //   nextSlide()
+    // },5000)
+
+
   return (
     <div className="overflow-hidden relative">
-      <div className="flex justify-center transition ease-out duration-400 translate-x-28">
+      <div className="flex justify-center transition ease-out duration-400">
         {images.map((index) => (
-          <img className="" src={images[current]} />
+          <img key={index} className="" src={images[current]} />
         ))}
       </div>
       <div className="absolute top-0 h-full w-full justify-between items-center flex  px-10 text-2xl">

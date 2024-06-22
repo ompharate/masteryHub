@@ -1,6 +1,8 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "./header/Header";
+import AuthProvider from "./AuthProvider";
+import { Suspense } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,9 +14,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-      <Header/>
-      {children}</body>
+      <AuthProvider>
+        <body className={inter.className}>
+          <Header />
+          <Suspense fallback={<h1  className="text-3xl text-red-500">loading</h1>}>{children}</Suspense>
+        </body>
+      </AuthProvider>
     </html>
   );
 }

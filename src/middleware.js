@@ -5,7 +5,7 @@ export default auth((req) => {
  
   const { nextUrl } = req;
 
-  if(isLoggedIn && nextUrl.pathname == "/login") return Response.redirect(new URL("/dashboard", nextUrl));
+  if(isLoggedIn && nextUrl.pathname == "/login") return Response.redirect(new URL("/", nextUrl));
 
   if (nextUrl.pathname == "/login" || nextUrl.pathname == "/" ) return null;
   

@@ -12,6 +12,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         return {
           ...profile,
           role: userRole,
+          pic:profile.avatar_url
         };
       },
       clientId: process.env.AUTH_GITHUB_ID,
@@ -25,6 +26,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         return {
           ...profile,
           id: profile.sub,
+          pic:profile.picture
         };
       },
       clientId: process.env.AUTH_GOOGLE_ID,
@@ -34,13 +36,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
+        console.log("google user:-",user)
         token.role = user.role;
+        token.pic = user.pic;
       }
       return token;
     },
     async session({ session, token }) {
       if (session?.user) {
         session.user.role = token.role;
+        session.user.pic = token.pic;
       }
       return session;
     },
