@@ -6,26 +6,22 @@ const courseSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    required: true,
   },
   image: {
     type: String,
-    required: true,
   },
   instructor: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true,
+    ref: "User",
   },
   price: {
     type: Number,
-    required: true,
   },
   // videos: [{
   //   type: mongoose.Schema.Types.ObjectId,
   //   ref: 'Videos',
   // },],
-  
+
   createdAt: {
     type: Date,
     default: Date.now,
@@ -36,5 +32,5 @@ const courseSchema = new mongoose.Schema({
   },
 });
 
-const Course = mongoose.models.Courses ||  mongoose.model('Courses', courseSchema);
-module.exports = Course;
+export const Course =
+  mongoose.models.Courses || mongoose.model("Courses", courseSchema);
